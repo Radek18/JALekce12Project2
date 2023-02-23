@@ -10,7 +10,8 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    ProductService productService;
+    private final ProductService productService;
+
 
     public ProductController() throws SQLException {
         productService = new ProductService();
@@ -27,21 +28,23 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public Product saveProduct(@RequestBody Product product) throws SQLException {
-        int generatedId = productService.saveProduct(product);
-        product.setId(generatedId);
-        return product;
+    public void saveProduct(@RequestBody Product product) throws SQLException {
+        productService.saveProduct(product);
     }
 
     @PatchMapping("/product/{id}")
-    public Product updateProductPrice(@PathVariable("id") int id, @RequestParam(value = "price") BigDecimal price) throws SQLException {
+    public void updateProductPrice(@PathVariable("id") int id, @RequestParam(value = "price") BigDecimal price) throws SQLException {
         productService.updateProductPrice(id, price);
-        return productService.getProduct(id);
     }
 
     @DeleteMapping("/products")
     public void deleteProductsNotForSale() throws SQLException {
         productService.deleteProductsNotForSale();
+    }
+
+    @DeleteMapping("/product/{id}")
+    public void deleteProduct(@PathVariable("id") int id) throws SQLException {
+        productService.deleteProduct(id);
     }
 
     @ExceptionHandler

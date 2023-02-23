@@ -3,11 +3,12 @@ package com.engeto.Lekce12Project2;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductService {
 
-    static Connection connection;
+    private static Connection connection;
 
     public ProductService () throws SQLException {
 
@@ -22,6 +23,7 @@ public class ProductService {
         while (resultSet.next()) {
             Product product = extractProductData(resultSet);
             resultList.add(product);
+            Collections.sort(resultList);
         }
         return resultList;
     }
@@ -35,16 +37,12 @@ public class ProductService {
         return null;
     }
 
-    public int saveProduct(Product product) throws SQLException {
+    public void saveProduct(Product product) throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate(
             "INSERT INTO eshop.product(partNo, name, description, isForSale, price) VALUES(" +
-            product.getPartNo() + ", '" + product.getName() + "', '" + product.getDescription() + "', " + product.isForSale() + ", " + product.getPrice() + ")",
-            Statement.RETURN_GENERATED_KEYS
+            product.getPartNo() + ", '" + product.getName() + "', '" + product.getDescription() + "', " + product.isForSale() + ", " + product.getPrice() + ")"
         );
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        generatedKeys.next();
-        return generatedKeys.getInt(1);
     }
 
     public void updateProductPrice(int id, BigDecimal price) throws SQLException {
@@ -55,6 +53,11 @@ public class ProductService {
     public void deleteProductsNotForSale() throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM eshop.product WHERE isForSale = 0");
+    }
+
+    public void deleteProduct(int id) throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("DELETE FROM eshop.product WHERE id = " + id);
     }
 
     public static Product extractProductData(ResultSet resultSet) throws SQLException {

@@ -2,7 +2,7 @@ package com.engeto.Lekce12Project2;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product implements Comparable<Product> {
 
     private int id;
     private int partNo;
@@ -31,7 +31,7 @@ public class Product {
         this.id = id;
     }
 
-    public int getPartNo() {
+    public Integer getPartNo() {
         return partNo;
     }
 
@@ -69,6 +69,11 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(Product secondProduct) {
+        return this.getPartNo().compareTo(secondProduct.getPartNo());
     }
 
 }

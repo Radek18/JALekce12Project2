@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nabídka produktů</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Nabídka produktů</h1>
+
+<div class="button" id="deleteProductsNotForSale" onclick="deleteProductsNotForSale()">Odstranit produkty, které nejsou skladem</div>
+
+<div id="headings">
+    <label id="id">ID</label>
+    <label id="partNo">Číslo produktu</label>
+    <label id="name">Název produktu</label>
+    <label id="description">Popis produktu</label>
+    <label id="forSale">Skladem</label>
+    <label id="price" >Cena</label>
+</div>
+
+<div id="setProduct">
+    <input id="setPartNo" type="text" placeholder="*">
+    <input id="setName" type="text" placeholder="*">
+    <input id="setDescription" type="text">
+    <select id="setForSale" >
+        <option value="1">ANO</option>
+        <option value="2">NE</option>
+    </select>
+    <input id="setPrice" type="text" placeholder="Kč *">
+    <label class="button" id="saveProduct" onclick="saveProduct()">Vložit produkt</label>
+    <label id="note">* požadovaný údaj</label>
+</div>
+
+<div id="getProductLine">
+    <label id="getId" ></label>
+    <label id="getPartNo" ></label>
+    <label id="getName" ></label>
+    <label id="getDescription" ></label>
+    <label id="getForSale" ></label>
+    <label id="getPrice" ></label>
+    <label class="button" id="getProduct" onclick="getProduct()">Načíst produkt dle ID</label>
+    <input id="idInput" type="text">
+</div>
+
+<div id="productList"></div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

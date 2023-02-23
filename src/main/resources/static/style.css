@@ -1,0 +1,293 @@
+body {
+    background: linear-gradient(#216469, #698176);
+    height: 100vh;
+    font-family: Calibri, serif;
+}
+
+h1 {
+    color: #212323;
+    font-size: 3rem;
+}
+
+/* headings */
+
+#headings {
+    position: absolute;
+    top: 150px;
+    color: white;
+    font-size: 20px;
+}
+
+#id {
+    height: 20px;
+    width: 50px;
+}
+
+#partNo {
+    position: absolute;
+    left: 100px;
+    height: 20px;
+    width: 150px;
+}
+
+#name {
+    position: absolute;
+    left: 300px;
+    height: 20px;
+    width: 200px;
+}
+
+#description {
+    position: absolute;
+    left: 550px;
+    height: 20px;
+    width: 300px;
+}
+
+#forSale {
+    position: absolute;
+    left: 900px;
+    height: 26px;
+    width: 110px;
+}
+
+#price {
+    position: absolute;
+    left: 1050px;
+    height: 20px;
+    width: 150px;
+}
+
+/* setProduct */
+
+#setProduct {
+    position: absolute;
+    top: 180px;
+}
+
+#setPartNo {
+    position: absolute;
+    left: 100px;
+    height: 20px;
+    width: 150px;
+}
+
+#setName {
+    position: absolute;
+    left: 300px;
+    height: 20px;
+    width: 200px;
+}
+
+#setDescription {
+    position: absolute;
+    left: 550px;
+    height: 20px;
+    width: 300px;
+}
+
+#setForSale {
+    position: absolute;
+    left: 900px;
+    height: 26px;
+    width: 110px;
+}
+
+#setPrice {
+    position: absolute;
+    left: 1050px;
+    height: 20px;
+    width: 150px;
+    text-align: right;
+}
+
+#note {
+    position: absolute;
+    top: 30px;
+    left: 100px;
+    width: 150px;
+    font-size: 12px;
+}
+
+/* getProductLine */
+
+#getProductLine {
+    position: absolute;
+    top: 240px;
+    font-size: 20px;
+}
+
+#getId {
+    position: absolute;
+    height: 26px;
+    width: 35px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+#getPartNo {
+    position: absolute;
+    left: 100px;
+    height: 26px;
+    width: 158px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+}
+
+#getName {
+    position: absolute;
+    left: 300px;
+    height: 26px;
+    width: 208px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+}
+
+#getDescription {
+    position: absolute;
+    left: 550px;
+    height: 26px;
+    width: 308px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+}
+
+#getForSale {
+    position: absolute;
+    left: 900px;
+    height: 26px;
+    width: 110px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+}
+
+#getPrice {
+    position: absolute;
+    left: 1050px;
+    height: 26px;
+    width: 158px;
+    background-color: #7e9b9b;
+    border-radius: 2px;
+    text-align: right;
+}
+
+/* productList*/
+
+#productList {
+    position: absolute;
+    top: 300px;
+    color: #212323;
+    font-size: 20px;
+}
+
+.id {
+    font-weight: bold;
+}
+
+.partNo {
+    position: absolute;
+    left: 100px;
+    height: 20px;
+    width: 158px;
+}
+
+.name {
+    position: absolute;
+    left: 300px;
+    height: 20px;
+    width: 208px;
+}
+
+.description {
+    position: absolute;
+    left: 550px;
+    height: 20px;
+    width: 308px;
+}
+
+.forSale {
+    position: absolute;
+    left: 900px;
+    height: 26px;
+    width: 110px;
+}
+
+.price {
+    position: absolute;
+    left: 1050px;
+    height: 20px;
+    width: 158px;
+    text-align: right;
+}
+
+/* buttons */
+
+.button {
+    background-color: #579b9b;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 20px;
+    color: #212323;
+}
+
+.button:hover {
+    background-color: #388d8d;
+    cursor: pointer;
+}
+
+.button:active {
+    border: 2px solid #212323;
+}
+
+#deleteProductsNotForSale {
+    position: absolute;
+    top: 60px;
+    left: 1258px;
+    height: 50px;
+    width: 280px;
+}
+
+#saveProduct {
+    position: absolute;
+    left: 1250px;
+    height: 26px;
+    width: 280px;
+}
+
+#getProduct {
+    position: absolute;
+    left: 1250px;
+    height: 26px;
+    width: 190px;
+}
+
+.insertProductPrice {
+    position: absolute;
+    left: 1250px;
+    height: 20px;
+    width:130px;
+    font-size: 15px;
+}
+
+.deleteProduct {
+    position: absolute;
+    left: 1400px;
+    height: 20px;
+    width: 130px;
+    font-size: 15px;
+}
+
+/* inputs */
+
+#idInput {
+    position: absolute;
+    left: 1470px;
+    height: 20px;
+    width: 52px;
+}
+
+.setNewPrice {
+    height: 15px;
+    width: 150px;
+}

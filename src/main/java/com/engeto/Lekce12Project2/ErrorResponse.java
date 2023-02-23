@@ -27,4 +27,5 @@ public class ErrorResponse {
     public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
+
 }
