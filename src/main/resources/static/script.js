@@ -80,31 +80,42 @@ function getProduct() {
 
     const id = document.getElementById("idInput").value;
 
-    fetch("http://localhost:8080/product/" + id, requestOptions)
-        .then(response => response.json())
-        .then(result => {
+    if (id > 0) {
 
-            document.getElementById("getId").textContent = result.id;
+        fetch("http://localhost:8080/product/" + id, requestOptions)
+            .then(response => response.json())
+            .then(result => {
 
-            document.getElementById("getPartNo").textContent = result.partNo;
+                document.getElementById("getId").textContent = result.id;
 
-            document.getElementById("getName").textContent = result.name;
+                document.getElementById("getPartNo").textContent = result.partNo;
 
-            if (result.description !== "null") document.getElementById("getDescription").textContent = result.description;
-            else document.getElementById("getDescription").textContent = "";
+                document.getElementById("getName").textContent = result.name;
 
-            if (result.forSale) document.getElementById("getForSale").textContent = "ANO";
-            else document.getElementById("getForSale").textContent = "NE";
+                if (result.description !== "null") document.getElementById("getDescription").textContent = result.description;
+                else document.getElementById("getDescription").textContent = "";
 
-            document.getElementById("getPrice").textContent = Math.round(result.price).toLocaleString('cs-CZ') + " Kč";
+                if (result.forSale) document.getElementById("getForSale").textContent = "ANO";
+                else document.getElementById("getForSale").textContent = "NE";
 
-        })
+                document.getElementById("getPrice").textContent = Math.round(result.price).toLocaleString('cs-CZ') + " Kč";
 
-        .catch(error => console.log("error", error));
+            })
+
+            .catch(error => console.log("error", error));
+
+    } else alert("Je nutné zadat celé kladné číslo!");
 
 }
 
 function saveProduct() {
+
+    document.getElementById("partNo").style.color = "white";
+    document.getElementById("name").style.color = "white";
+    document.getElementById("price").style.color = "white";
+    document.getElementById("note").innerText = "* požadovaný údaj";
+    document.getElementById("note").style.color = "#212323";
+
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -114,12 +125,17 @@ function saveProduct() {
     if (forSale === "1") setForSale = true;
     else setForSale = false;
 
+    const partNo = document.getElementById("setPartNo").value;
+    const name = document.getElementById("setName").value;
+    const price = document.getElementById("setPrice").value;
+
+
     const raw = JSON.stringify({
-        "partNo": document.getElementById("setPartNo").value,
-        "name": document.getElementById("setName").value,
+        "partNo": partNo,
+        "name": name,
         "description": document.getElementById("setDescription").value,
         "forSale": setForSale,
-        "price": document.getElementById("setPrice").value
+        "price": price
     });
 
     const requestOptions = {
@@ -129,15 +145,59 @@ function saveProduct() {
         redirect: "follow"
     }
 
-    fetch("http://localhost:8080/product", requestOptions)
-        .then(response => response.text())
-        .then(() => {
+    if (partNo > 0 && name !== "" && price > 0) {
 
-            getAllProducts();
+        fetch("http://localhost:8080/product", requestOptions)
+            .then(response => response.text())
+            .then(() => {
 
-        })
+                getAllProducts();
 
-        .catch(error => console.log("error", error));
+            })
+
+            .catch(error => console.log("error", error));
+
+    } else if (!partNo > 0 && name === "" && !price > 0) {
+        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Název produktu musí být vyplněn! Cena musí být kladné číslo!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("partNo").style.color = "red";
+        document.getElementById("name").style.color = "red";
+        document.getElementById("price").style.color = "red";
+
+    } else if (name === "" && !price > 0) {
+        document.getElementById("note").innerText = "Název produktu musí být vyplněn! Cena musí být kladné číslo!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("name").style.color = "red";
+        document.getElementById("price").style.color = "red";
+
+    } else if (!partNo > 0 && !price > 0) {
+        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Cena musí být kladné číslo!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("partNo").style.color = "red";
+        document.getElementById("price").style.color = "red";
+
+    } else if (!partNo > 0 && name === "") {
+        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Název produktu musí být vyplněn!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("partNo").style.color = "red";
+        document.getElementById("name").style.color = "red";
+
+    } else if (!partNo > 0) {
+        document.getElementById("note").innerText = "Číslo produktu musí být celé kladné číslo!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("partNo").style.color = "red";
+
+    } else if (name === "") {
+        document.getElementById("note").innerText = "Název produktu musí být vyplněn!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("name").style.color = "red";
+
+
+    } else {
+        document.getElementById("note").innerText = "Cena musí být kladné číslo!";
+        document.getElementById("note").style.color = "red";
+        document.getElementById("price").style.color = "red";
+    }
 
 }
 
@@ -168,15 +228,19 @@ function updateProductPrice(id) {
 
     const price = document.getElementById("setNewPrice" + id).value;
 
-    fetch("http://localhost:8080/product/" + id + "?price=" + price, requestOptions)
-        .then(response => response.text())
-        .then(() => {
+    if (price > 0) {
 
-            getAllProducts();
+        fetch("http://localhost:8080/product/" + id + "?price=" + price, requestOptions)
+            .then(response => response.text())
+            .then(() => {
 
-        })
+                getAllProducts();
 
-        .catch(error => console.log("error", error));
+            })
+
+            .catch(error => console.log("error", error));
+
+    } else alert("Je nutné zadat kladné číslo!");
 
 }
 

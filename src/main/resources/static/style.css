@@ -105,7 +105,8 @@ h1 {
     position: absolute;
     top: 30px;
     left: 100px;
-    width: 150px;
+    width: 600px;
+    color: #212323;
     font-size: 12px;
 }
 
@@ -114,6 +115,7 @@ h1 {
 #getProductLine {
     position: absolute;
     top: 240px;
+    color: #212323;
     font-size: 20px;
 }
 
