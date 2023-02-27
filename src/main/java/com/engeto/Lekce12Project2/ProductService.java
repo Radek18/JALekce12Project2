@@ -1,11 +1,14 @@
 package com.engeto.Lekce12Project2;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class ProductService {
 
     private static Connection connection;
@@ -28,13 +31,13 @@ public class ProductService {
         return resultList;
     }
 
-    public Product getProduct(int id) throws SQLException {
+    public Product getProduct(int id) throws Exception {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM eshop.product WHERE id = " + id);
         if (resultSet.next()) {
         return extractProductData(resultSet);
         }
-        return null;
+        throw new Exception("Zadané ID v databázi nenalezeno!");
     }
 
     public void saveProduct(Product product) throws SQLException {

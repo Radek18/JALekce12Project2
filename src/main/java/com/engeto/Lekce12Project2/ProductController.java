@@ -12,9 +12,8 @@ public class ProductController {
 
     private final ProductService productService;
 
-
-    public ProductController() throws SQLException {
-        productService = new ProductService();
+    public ProductController(ProductService productService) {
+            this.productService = productService;
     }
 
     @GetMapping("/products")
@@ -23,8 +22,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable("id") int id) throws SQLException {
-        return productService.getProduct(id);
+    public Product getProduct(@PathVariable("id") int id) throws Exception {
+            return productService.getProduct(id);
     }
 
     @PostMapping("/product")

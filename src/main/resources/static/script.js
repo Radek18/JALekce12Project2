@@ -67,6 +67,7 @@ function getAllProducts() {
             });
 
         })
+
         .catch(error => console.log("error", error));
 
 }
@@ -86,19 +87,23 @@ function getProduct() {
             .then(response => response.json())
             .then(result => {
 
-                document.getElementById("getId").textContent = result.id;
+                if (result.id) {
 
-                document.getElementById("getPartNo").textContent = result.partNo;
+                    document.getElementById("getId").textContent = result.id;
 
-                document.getElementById("getName").textContent = result.name;
+                    document.getElementById("getPartNo").textContent = result.partNo;
 
-                if (result.description !== "null") document.getElementById("getDescription").textContent = result.description;
-                else document.getElementById("getDescription").textContent = "";
+                    document.getElementById("getName").textContent = result.name;
 
-                if (result.forSale) document.getElementById("getForSale").textContent = "ANO";
-                else document.getElementById("getForSale").textContent = "NE";
+                    if (result.description !== "null") document.getElementById("getDescription").textContent = result.description;
+                    else document.getElementById("getDescription").textContent = "";
 
-                document.getElementById("getPrice").textContent = Math.round(result.price).toLocaleString('cs-CZ') + " Kč";
+                    if (result.forSale) document.getElementById("getForSale").textContent = "ANO";
+                    else document.getElementById("getForSale").textContent = "NE";
+
+                    document.getElementById("getPrice").textContent = Math.round(result.price).toLocaleString('cs-CZ') + " Kč";
+
+                } else alert(result.message + "\n" + result.timeStamp);
 
             })
 
@@ -113,9 +118,11 @@ function saveProduct() {
     document.getElementById("partNo").style.color = "white";
     document.getElementById("name").style.color = "white";
     document.getElementById("price").style.color = "white";
-    document.getElementById("note").innerText = "* požadovaný údaj";
-    document.getElementById("note").style.color = "#212323";
-
+    document.getElementById("partNoNote").style.display = "block";
+    document.getElementById("partNoNote").innerText = "* požadovaný údaj";
+    document.getElementById("partNoNote").style.color = "#212323";
+    document.getElementById("nameNote").innerText = "";
+    document.getElementById("priceNote").innerText = "";
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -157,46 +164,21 @@ function saveProduct() {
 
             .catch(error => console.log("error", error));
 
-    } else if (!partNo > 0 && name === "" && !price > 0) {
-        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Název produktu musí být vyplněn! Cena musí být kladné číslo!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("partNo").style.color = "red";
-        document.getElementById("name").style.color = "red";
-        document.getElementById("price").style.color = "red";
-
-    } else if (name === "" && !price > 0) {
-        document.getElementById("note").innerText = "Název produktu musí být vyplněn! Cena musí být kladné číslo!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("name").style.color = "red";
-        document.getElementById("price").style.color = "red";
-
-    } else if (!partNo > 0 && !price > 0) {
-        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Cena musí být kladné číslo!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("partNo").style.color = "red";
-        document.getElementById("price").style.color = "red";
-
-    } else if (!partNo > 0 && name === "") {
-        document.getElementById("note").innerText = "Číslo produktu musí být  kladné číslo! Název produktu musí být vyplněn!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("partNo").style.color = "red";
+    } if (name === "") {
+        document.getElementById("partNoNote").style.display = "none";
+        document.getElementById("nameNote").innerText = "Musí být vyplněno!";
         document.getElementById("name").style.color = "red";
 
-    } else if (!partNo > 0) {
-        document.getElementById("note").innerText = "Číslo produktu musí být celé kladné číslo!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("partNo").style.color = "red";
-
-    } else if (name === "") {
-        document.getElementById("note").innerText = "Název produktu musí být vyplněn!";
-        document.getElementById("note").style.color = "red";
-        document.getElementById("name").style.color = "red";
-
-
-    } else {
-        document.getElementById("note").innerText = "Cena musí být kladné číslo!";
-        document.getElementById("note").style.color = "red";
+    } if (!(price > 0)) {
+        document.getElementById("partNoNote").style.display = "none";
+        document.getElementById("priceNote").innerText = "Musí být vyplněné kladné číslo!";
         document.getElementById("price").style.color = "red";
+
+    } if (!(partNo > 0)) {
+        document.getElementById("partNoNote").style.display = "block";
+        document.getElementById("partNoNote").innerText = "Musí být vyplněné celé kladné číslo!";
+        document.getElementById("partNoNote").style.color = "red";
+        document.getElementById("partNo").style.color = "red";
     }
 
 }
@@ -217,6 +199,7 @@ function insertProductPrice(id) {
     inputPrice.setAttribute("type", "text");
     inputPrice.setAttribute("placeholder", oldPrice);
     product.appendChild(inputPrice);
+
 }
 
 function updateProductPrice(id) {

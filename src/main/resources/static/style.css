@@ -101,12 +101,30 @@ h1 {
     text-align: right;
 }
 
-#note {
+#partNoNote {
     position: absolute;
     top: 30px;
     left: 100px;
-    width: 600px;
+    width: 150px;
     color: #212323;
+    font-size: 12px;
+}
+
+#nameNote {
+    position: absolute;
+    top: 30px;
+    left: 300px;
+    width: 200px;
+    color: red;
+    font-size: 12px;
+}
+
+#priceNote {
+    position: absolute;
+    top: 30px;
+    left: 1050px;
+    width: 200px;
+    color: red;
     font-size: 12px;
 }
 
