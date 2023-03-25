@@ -8,8 +8,8 @@ public class ProductTest {
     @Test
     public void idValidationTest() throws Exception {
         ProductService test = new ProductService();
-        int testResult = test.getProduct(1).getId();
-        Assertions.assertEquals(1, testResult);
+        int testResult = test.getProduct(17).getId();
+        Assertions.assertEquals(17, testResult);
     }
 
 }

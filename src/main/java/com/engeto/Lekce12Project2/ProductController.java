@@ -21,17 +21,17 @@ public class ProductController {
         return ProductService.getAllProducts();
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public Product getProduct(@PathVariable("id") int id) throws Exception {
             return productService.getProduct(id);
     }
 
-    @PostMapping("/product")
+    @PostMapping("/products")
     public void saveProduct(@RequestBody Product product) throws SQLException {
         productService.saveProduct(product);
     }
 
-    @PatchMapping("/product/{id}")
+    @PatchMapping("/products/{id}")
     public void updateProductPrice(@PathVariable("id") int id, @RequestParam(value = "price") BigDecimal price) throws SQLException {
         productService.updateProductPrice(id, price);
     }
@@ -41,7 +41,7 @@ public class ProductController {
         productService.deleteProductsNotForSale();
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/products/{id}")
     public void deleteProduct(@PathVariable("id") int id) throws SQLException {
         productService.deleteProduct(id);
     }

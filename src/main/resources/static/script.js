@@ -83,7 +83,7 @@ function getProduct() {
 
     if (id > 0) {
 
-        fetch("http://localhost:8080/product/" + id, requestOptions)
+        fetch("http://localhost:8080/products/" + id, requestOptions)
             .then(response => response.json())
             .then(result => {
 
@@ -136,7 +136,6 @@ function saveProduct() {
     const name = document.getElementById("setName").value;
     const price = document.getElementById("setPrice").value;
 
-
     const raw = JSON.stringify({
         "partNo": partNo,
         "name": name,
@@ -154,7 +153,7 @@ function saveProduct() {
 
     if (partNo > 0 && name !== "" && price > 0) {
 
-        fetch("http://localhost:8080/product", requestOptions)
+        fetch("http://localhost:8080/products", requestOptions)
             .then(response => response.text())
             .then(() => {
 
@@ -213,7 +212,7 @@ function updateProductPrice(id) {
 
     if (price > 0) {
 
-        fetch("http://localhost:8080/product/" + id + "?price=" + price, requestOptions)
+        fetch("http://localhost:8080/products/" + id + "?price=" + price, requestOptions)
             .then(response => response.text())
             .then(() => {
 
@@ -253,7 +252,7 @@ function deleteProduct(id) {
         redirect: "follow"
     }
 
-    fetch("http://localhost:8080/product/" + id, requestOptions)
+    fetch("http://localhost:8080/products/" + id, requestOptions)
         .then(response => response.text())
         .then(() => {
 
