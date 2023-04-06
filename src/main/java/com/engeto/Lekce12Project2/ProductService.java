@@ -15,7 +15,7 @@ public class ProductService {
 
     public ProductService () throws SQLException {
 
-        connection = DriverManager.getConnection("" + Settings.url() + "", "" + Settings.user() + "", "" + Settings.password() + "");
+        connection = DriverManager.getConnection(Settings.url(), Settings.user(), Settings.password());
 
     }
 

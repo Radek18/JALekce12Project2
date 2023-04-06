@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class ProductTest {
 
     @Test
-    public void idValidationTest1() throws Exception {
+    public void idValidationTest() throws Exception {
         ProductService test = new ProductService();
         int testResult = test.getProduct(17).getId();
         Assertions.assertEquals(17, testResult);
